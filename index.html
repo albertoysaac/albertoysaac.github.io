@@ -4,15 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio Profesional | Alberto Isaac Espinosa</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="description" content="Portafolio de Alberto Isaac Espinosa, Full Stack Developer en CDMX: backend en Java y Python, análisis de datos con SQL y experiencias web con React. Proyectos reales, trayectoria y contacto.">
+    <meta property="og:title" content="Alberto Isaac Espinosa | Full Stack Developer">
+    <meta property="og:description" content="Portafolio de Alberto Isaac Espinosa, Full Stack Developer en CDMX: backend en Java y Python, análisis de datos con SQL y experiencias web con React.">
+    <meta property="og:url" content="https://albertoysaac.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://albertoysaac.github.io/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Alberto Isaac Espinosa | Full Stack Developer">
+    <meta name="twitter:description" content="Portafolio de Alberto Isaac Espinosa, Full Stack Developer en CDMX: backend en Java y Python, análisis de datos con SQL y experiencias web con React.">
+    <meta name="twitter:image" content="https://albertoysaac.github.io/og-image.jpg">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS (compilado, ver style.css) -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font: preconnect para cargar Inter más rápido -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #334155; }
@@ -24,35 +37,36 @@
         .nav-link { position: relative; }
         .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: #4f46e5; transition: width 0.3s; }
         .nav-link:hover::after { width: 100%; }
-        /* Scrollbar suave */
-        html { scroll-behavior: smooth; }
+
+        /* Skip link: oculto hasta recibir el foco del teclado */
+        .skip-link { position: absolute; left: -9999px; top: 0; z-index: 100; background: #4f46e5; color: #fff; padding: 0.5rem 1rem; border-radius: 0 0 0.5rem 0; font-size: 0.875rem; font-weight: 600; }
+        .skip-link:focus { left: 0; }
+
+        /* Texto solo para lectores de pantalla */
+        .visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+        /* Secciones bajo el fold: el navegador puede aplazar su render */
+        #trayectoria, #proyectos { content-visibility: auto; contain-intrinsic-size: auto 800px; }
+
+        /* Patrón sutil en CSS puro para el CTA (sin dependencia externa) */
+        .cta-pattern { background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px); background-size: 24px 24px; }
+
+        /* Diálogos de proyectos */
+        dialog::backdrop { background: rgba(15, 23, 42, 0.6); }
+
+        /* Movimiento reducido: sin scroll suave ni transiciones */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+        @media (prefers-reduced-motion: no-preference) {
+            html { scroll-behavior: smooth; }
+        }
     </style>
-
-    <!-- Placeholder Comments Required -->
-    <!-- Chosen Palette: Warm Neutrals & Indigo Focus (Slate-50 background, Slate-800 text, Indigo-600 accents) to convey stability and modern tech professionalism. -->
-    
-    <!-- Application Structure Plan: 
-         Designed as a "Professional Metrics Dashboard" rather than a standard scrolling page.
-         1. Hero Section: Immediate identity and value proposition statement.
-         2. Skills Radar: A visual summary of the technical stack balance (Backend vs Frontend vs Data).
-         3. Interactive Timeline: Users click through experience nodes to see details dynamically, preventing text overload.
-         4. Project Matrix: Cards with flip/expand functionality to show tech specs without clutter.
-         5. Performance Metrics: Data visualizations of soft skills/impact (e.g., optimization percentages).
-         This structure allows recruiters to "audit" the candidate's profile efficiently.
-    -->
-
-    <!-- Visualization & Content Choices:
-         1. Skills Radar Chart (Chart.js): chosen to show the multi-disciplinary nature (Full Stack + Data Analyst). Allows quick assessment of strengths.
-         2. Experience Timeline (Interactive DOM): chosen to tell a chronological story without wall-of-text. Interaction keeps user engaged.
-         3. Impact Donut Charts (Chart.js): chosen to highlight specific quantitative achievements (e.g., 30% optimization) extracted from the CV.
-         4. Project Grid (Flex/Grid): Clear categorization of work.
-         NO SVG graphics used. NO Mermaid JS used.
-    -->
-
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-indigo-100 selection:text-indigo-700">
+
+    <a href="#contenido" class="skip-link">Saltar al contenido</a>
 
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
@@ -77,9 +91,11 @@
         </div>
     </nav>
 
+    <main id="contenido">
     <!-- Hero Section -->
     <section id="inicio" class="pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center max-w-3xl mx-auto">
+            <img src="data:image/webp;base64,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" alt="Alberto Isaac Espinosa" width="112" height="112" fetchpriority="high" class="w-28 h-28 rounded-full object-cover mx-auto mb-6 ring-4 ring-indigo-100 shadow-lg">
             <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-indigo-600 uppercase bg-indigo-50 rounded-full border border-indigo-100">
                 Disponible para 2026 &bull; Full Stack Developer
             </div>
@@ -87,16 +103,16 @@
                 Ingeniería de Sistemas y <span class="text-indigo-600">Soluciones Escalables</span>.
             </h1>
             <p class="text-lg sm:text-xl text-slate-600 mb-8 leading-relaxed">
-                Transformo necesidades complejas en aplicaciones web robustas y eficientes. 
+                Transformo necesidades complejas en aplicaciones web robustas y eficientes.
                 Especialista en optimización de backend (Java/Python), análisis de datos (SQL) y experiencias de usuario fluidas (React).
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="document.getElementById('proyectos').scrollIntoView()" class="px-8 py-3 bg-white border border-slate-300 text-slate-700 rounded-lg font-semibold hover:border-indigo-600 hover:text-indigo-600 transition-colors shadow-sm">
+                <a href="#proyectos" class="inline-block px-8 py-3 bg-white border border-slate-300 text-slate-700 rounded-lg font-semibold hover:border-indigo-600 hover:text-indigo-600 transition-colors shadow-sm">
                     Ver Portafolio
-                </button>
-                <button onclick="document.getElementById('trayectoria').scrollIntoView()" class="px-8 py-3 bg-slate-900 text-white rounded-lg font-semibold hover:bg-slate-800 transition-colors shadow-lg">
+                </a>
+                <a href="#trayectoria" class="inline-block px-8 py-3 bg-slate-900 text-white rounded-lg font-semibold hover:bg-slate-800 transition-colors shadow-lg">
                     Ver Experiencia
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -114,7 +130,7 @@
             </div>
             <div>
                 <p class="text-3xl font-bold text-indigo-600">Full Stack</p>
-                <p class="text-sm text-slate-500 font-medium">Java, Python & JS</p>
+                <p class="text-sm text-slate-500 font-medium">Java, Python &amp; JS</p>
             </div>
             <div>
                 <p class="text-3xl font-bold text-indigo-600">B1</p>
@@ -128,7 +144,7 @@
         <div class="mb-12">
             <h2 class="text-3xl font-bold text-slate-900 mb-4">Radar Técnico</h2>
             <p class="text-slate-600 max-w-2xl">
-                Este gráfico visualiza el equilibrio de mi perfil profesional. Mi fortaleza radica en la intersección entre un 
+                Este gráfico visualiza el equilibrio de mi perfil profesional. Mi fortaleza radica en la intersección entre un
                 <strong>Backend sólido</strong> (Java, Python, SQL) y la capacidad de construir <strong>Interfaces Modernas</strong> (React).
                 Esta versatilidad me permite entender el ciclo completo del desarrollo de software.
             </p>
@@ -138,15 +154,23 @@
             <!-- Chart Container -->
             <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
                 <div class="chart-container" style="position: relative; height: 400px; width: 100%; max-width: 500px;">
-                    <canvas id="skillsChart"></canvas>
+                    <canvas id="skillsChart" role="img" aria-label="Gráfico radar de competencias sobre 100: Frontend (React) 85, Backend (Java/Python) 90, Base de Datos (SQL) 88, DevOps/Tools 75, Análisis de Datos 80, Seguridad 70."></canvas>
                 </div>
+                <ul class="visually-hidden">
+                    <li>Frontend (React): 85 de 100</li>
+                    <li>Backend (Java/Python): 90 de 100</li>
+                    <li>Base de Datos (SQL): 88 de 100</li>
+                    <li>DevOps/Tools: 75 de 100</li>
+                    <li>Análisis de Datos: 80 de 100</li>
+                    <li>Seguridad: 70 de 100</li>
+                </ul>
             </div>
 
             <!-- Tech Stack List -->
             <div class="space-y-6">
                 <div class="p-6 bg-white rounded-xl shadow-sm border border-slate-100 hover:border-indigo-200 transition-colors">
                     <h3 class="text-lg font-bold text-slate-800 mb-3 flex items-center">
-                        <span class="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span> Backend & Data (Core)
+                        <span class="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span> Backend &amp; Data (Core)
                     </h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded text-sm font-medium">Java (Spring Boot)</span>
@@ -159,7 +183,7 @@
 
                 <div class="p-6 bg-white rounded-xl shadow-sm border border-slate-100 hover:border-teal-200 transition-colors">
                     <h3 class="text-lg font-bold text-slate-800 mb-3 flex items-center">
-                        <span class="w-2 h-2 bg-teal-400 rounded-full mr-2"></span> Frontend & UI
+                        <span class="w-2 h-2 bg-teal-400 rounded-full mr-2"></span> Frontend &amp; UI
                     </h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded text-sm font-medium">React.js</span>
@@ -171,7 +195,7 @@
 
                 <div class="p-6 bg-white rounded-xl shadow-sm border border-slate-100 hover:border-orange-200 transition-colors">
                     <h3 class="text-lg font-bold text-slate-800 mb-3 flex items-center">
-                        <span class="w-2 h-2 bg-orange-400 rounded-full mr-2"></span> Tools & DevOps
+                        <span class="w-2 h-2 bg-orange-400 rounded-full mr-2"></span> Tools &amp; DevOps
                     </h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded text-sm font-medium">Docker</span>
@@ -200,17 +224,204 @@
                 <div class="md:w-1/3 space-y-4 relative">
                     <!-- Vertical Line -->
                     <div class="absolute left-4 top-4 bottom-4 w-0.5 bg-slate-200 hidden md:block"></div>
-                    
+
                     <div id="timeline-container">
-                        <!-- JS will populate buttons here -->
+                        <button type="button" class="timeline-node flex items-center p-4 mb-3 rounded-lg border border-transparent hover:bg-slate-50 cursor-pointer w-full text-left active" aria-current="true" data-job="0">
+                            <span class="w-3 h-3 rounded-full bg-white mr-4 node-dot shrink-0" aria-hidden="true"></span>
+                            <span>
+                                <span class="font-bold text-sm md:text-base block">4Geeks Academy (Proyecto Final)</span>
+                                <span class="text-xs md:text-sm opacity-80 block">02/2025 - Presente</span>
+                            </span>
+                        </button>
+                        <button type="button" class="timeline-node flex items-center p-4 mb-3 rounded-lg border border-transparent hover:bg-slate-50 cursor-pointer w-full text-left" data-job="1">
+                            <span class="w-3 h-3 rounded-full bg-slate-300 mr-4 node-dot shrink-0" aria-hidden="true"></span>
+                            <span>
+                                <span class="font-bold text-sm md:text-base block">App Administrativa Teatro (Freelance)</span>
+                                <span class="text-xs md:text-sm opacity-80 block">01/2025 - Presente</span>
+                            </span>
+                        </button>
+                        <button type="button" class="timeline-node flex items-center p-4 mb-3 rounded-lg border border-transparent hover:bg-slate-50 cursor-pointer w-full text-left" data-job="2">
+                            <span class="w-3 h-3 rounded-full bg-slate-300 mr-4 node-dot shrink-0" aria-hidden="true"></span>
+                            <span>
+                                <span class="font-bold text-sm md:text-base block">PepsiCo</span>
+                                <span class="text-xs md:text-sm opacity-80 block">08/2022 - 09/2023</span>
+                            </span>
+                        </button>
+                        <button type="button" class="timeline-node flex items-center p-4 mb-3 rounded-lg border border-transparent hover:bg-slate-50 cursor-pointer w-full text-left" data-job="3">
+                            <span class="w-3 h-3 rounded-full bg-slate-300 mr-4 node-dot shrink-0" aria-hidden="true"></span>
+                            <span>
+                                <span class="font-bold text-sm md:text-base block">HSBC</span>
+                                <span class="text-xs md:text-sm opacity-80 block">03/2020 - 05/2022</span>
+                            </span>
+                        </button>
                     </div>
                 </div>
 
                 <!-- Detail View Panel -->
                 <div class="md:w-2/3">
-                    <div id="experience-display" class="bg-slate-50 p-8 rounded-2xl border border-slate-200 h-full shadow-inner transition-opacity duration-300">
-                        <!-- Content injected via JS -->
-                    </div>
+                    <article class="experience-panel bg-slate-50 p-8 rounded-2xl border border-slate-200 h-full shadow-inner">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-indigo-700">Full Stack Developer</h3>
+                                <p class="text-slate-500 font-medium">4Geeks Academy (Proyecto Final) | Remoto</p>
+                            </div>
+                            <span class="text-sm text-slate-400 bg-slate-100 px-3 py-1 rounded-full">02/2025 - Presente</span>
+                        </div>
+                        <p class="text-slate-600 mb-6 italic border-l-4 border-indigo-200 pl-4">
+                            "Lideré el diseño y desarrollo de una aplicación integral de gestión comercial. Me enfoqué en la arquitectura limpia y la seguridad."
+                        </p>
+                        <div class="mb-6">
+                            <h4 class="font-bold text-slate-800 mb-3 uppercase text-xs tracking-wider">Impacto Clave &amp; Logros</h4>
+                            <ul class="list-none">
+                                <li class="flex items-start mb-2">
+                                    <span class="text-indigo-500 mr-2 mt-1" aria-hidden="true">▹</span>
+                                    <span class="text-slate-700 text-sm leading-relaxed">Desarrollo de App de gestión de inventario y ventas con React.js y Flask.</span>
+                                </li>
+                                <li class="flex items-start mb-2">
+                                    <span class="text-indigo-500 mr-2 mt-1" aria-hidden="true">▹</span>
+                                    <span class="text-slate-700 text-sm leading-relaxed">Implementación de autenticación JWT y control de acceso basado en roles (RBAC).</span>
+                                </li>
+                                <li class="flex items-start mb-2">
+                                    <span class="text-indigo-500 mr-2 mt-1" aria-hidden="true">▹</span>
+                                    <span class="text-slate-700 text-sm leading-relaxed">Integración con APIs externas (Open Food Facts) para enriquecimiento de datos.</span>
+                                </li>
+                                <li class="flex items-start mb-2">
+                                    <span class="text-indigo-500 mr-2 mt-1" aria-hidden="true">▹</span>
+                                    <span class="text-slate-700 text-sm leading-relaxed">Aplicación de principios SOLID y patrón MVC.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">React</span>
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">Flask</span>
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">PostgreSQL</span>
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">Docker</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="experience-panel bg-slate-50 p-8 rounded-2xl border border-slate-200 h-full shadow-inner hidden">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-indigo-700">Líder de Proyecto Web</h3>
+                                <p class="text-slate-500 font-medium">App Administrativa Teatro (Freelance) | Remoto</p>
+                            </div>
+                            <span class="text-sm text-slate-400 bg-slate-100 px-3 py-1 rounded-full">01/2025 - Presente</span>
+                        </div>
+                        <p class="text-slate-600 mb-6 italic border-l-4 border-indigo-200 pl-4">
+                            "Solución end-to-end para un cliente real, optimizando la venta de dulcería y boletos. Enfoque en UX y procesamiento de pagos."
+                        </p>
+                        <div class="mb-6">
+                            <h4 class="font-bold text-slate-800 mb-3 uppercase text-xs tracking-wider">Impacto Clave &amp; Logros</h4>
+                            <ul class="list-none">
+                                <li class="flex items-start mb-2">
+                                    <span class="text-indigo-500 mr-2 mt-1" aria-hidden="true">▹</span>
+                                    <span class="text-slate-700 text-sm leading-relaxed">Frontend responsivo para selección de productos y pagos con tarjeta.</span>
+                                </li>
+                                <li class="flex items-start mb-2">
+                                    <span class="text-indigo-500 mr-2 mt-1" aria-hidden="true">▹</span>
+                                    <span class="text-slate-700 text-sm leading-relaxed">Backend seguro en Python para manejo de inventario y reservas.</span>
+                                </li>
+                                <li class="flex items-start mb-2">
+                                    <span class="text-indigo-500 mr-2 mt-1" aria-hidden="true">▹</span>
+                                    <span class="text-slate-700 text-sm leading-relaxed">Integración de pasarela de pago (Stripe).</span>
+                                </li>
+                                <li class="flex items-start mb-2">
+                                    <span class="text-indigo-500 mr-2 mt-1" aria-hidden="true">▹</span>
+                                    <span class="text-slate-700 text-sm leading-relaxed">Panel de administración personalizado y despliegue en Hostinger.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">Python</span>
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">Stripe</span>
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">React</span>
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">Hostinger</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="experience-panel bg-slate-50 p-8 rounded-2xl border border-slate-200 h-full shadow-inner hidden">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-indigo-700">Analista de Bases de Datos</h3>
+                                <p class="text-slate-500 font-medium">PepsiCo | CDMX</p>
+                            </div>
+                            <span class="text-sm text-slate-400 bg-slate-100 px-3 py-1 rounded-full">08/2022 - 09/2023</span>
+                        </div>
+                        <p class="text-slate-600 mb-6 italic border-l-4 border-indigo-200 pl-4">
+                            "Gestión crítica de datos financieros. Mi rol fue clave para asegurar la integridad de la información y acelerar los cierres contables."
+                        </p>
+                        <div class="mb-6">
+                            <h4 class="font-bold text-slate-800 mb-3 uppercase text-xs tracking-wider">Impacto Clave &amp; Logros</h4>
+                            <ul class="list-none">
+                                <li class="flex items-start mb-2">
+                                    <span class="text-indigo-500 mr-2 mt-1" aria-hidden="true">▹</span>
+                                    <span class="text-slate-700 text-sm leading-relaxed">Gestión y optimización de bases de datos SQL y NoSQL.</span>
+                                </li>
+                                <li class="flex items-start mb-2">
+                                    <span class="text-indigo-500 mr-2 mt-1" aria-hidden="true">▹</span>
+                                    <span class="text-slate-700 text-sm leading-relaxed">Desarrollo de macros en Excel que redujeron el tiempo de análisis en un 30%.</span>
+                                </li>
+                                <li class="flex items-start mb-2">
+                                    <span class="text-indigo-500 mr-2 mt-1" aria-hidden="true">▹</span>
+                                    <span class="text-slate-700 text-sm leading-relaxed">Monitoreo y conciliación de saldos de proveedores con alta atención al detalle.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">SQL</span>
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">NoSQL</span>
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">Excel Macros</span>
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">Data Analysis</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="experience-panel bg-slate-50 p-8 rounded-2xl border border-slate-200 h-full shadow-inner hidden">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-indigo-700">Developer Jr.</h3>
+                                <p class="text-slate-500 font-medium">HSBC | CDMX</p>
+                            </div>
+                            <span class="text-sm text-slate-400 bg-slate-100 px-3 py-1 rounded-full">03/2020 - 05/2022</span>
+                        </div>
+                        <p class="text-slate-600 mb-6 italic border-l-4 border-indigo-200 pl-4">
+                            "Mantenimiento y mejora de sistemas bancarios legacy. Aprendizaje intensivo de estándares corporativos de seguridad y calidad."
+                        </p>
+                        <div class="mb-6">
+                            <h4 class="font-bold text-slate-800 mb-3 uppercase text-xs tracking-wider">Impacto Clave &amp; Logros</h4>
+                            <ul class="list-none">
+                                <li class="flex items-start mb-2">
+                                    <span class="text-indigo-500 mr-2 mt-1" aria-hidden="true">▹</span>
+                                    <span class="text-slate-700 text-sm leading-relaxed">Mantenimiento de aplicaciones web Java Spring Boot.</span>
+                                </li>
+                                <li class="flex items-start mb-2">
+                                    <span class="text-indigo-500 mr-2 mt-1" aria-hidden="true">▹</span>
+                                    <span class="text-slate-700 text-sm leading-relaxed">Depuración y resolución de problemas del lado del servidor (Debugging).</span>
+                                </li>
+                                <li class="flex items-start mb-2">
+                                    <span class="text-indigo-500 mr-2 mt-1" aria-hidden="true">▹</span>
+                                    <span class="text-slate-700 text-sm leading-relaxed">Refactorización de código legado para mejorar mantenibilidad.</span>
+                                </li>
+                                <li class="flex items-start mb-2">
+                                    <span class="text-indigo-500 mr-2 mt-1" aria-hidden="true">▹</span>
+                                    <span class="text-slate-700 text-sm leading-relaxed">Optimización de consultas MySQL para acelerar recuperación de datos.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">Java</span>
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">Spring Boot</span>
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">MySQL</span>
+                                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">Security</span>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </div>
@@ -226,17 +437,62 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="projects-grid">
-            <!-- Projects injected via JS -->
+            <article class="card p-6 flex flex-col h-full border border-slate-100">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center text-2xl mr-4" aria-hidden="true">🛒</div>
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-800 leading-tight">Sistema de Gestión Comercial</h3>
+                        <p class="text-xs text-indigo-600 font-semibold uppercase tracking-wide">E-commerce &amp; Admin Dashboard</p>
+                    </div>
+                </div>
+                <p class="text-slate-600 text-sm mb-6 flex-grow leading-relaxed">
+                    Plataforma robusta para control de inventario y ventas. Incluye roles de usuario diferenciados (CEO, Admin, Vendedor) y métricas en tiempo real.
+                </p>
+                <div class="mt-auto">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded">React</span>
+                        <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded">Flask</span>
+                        <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded">JWT</span>
+                        <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded">PostgreSQL</span>
+                    </div>
+                    <button type="button" data-dialog="dialogo-gestion" class="w-full py-2 border border-slate-200 rounded text-slate-600 text-sm hover:border-indigo-500 hover:text-indigo-600 transition-colors">
+                        Ver Detalles Técnicos
+                    </button>
+                </div>
+            </article>
+
+            <article class="card p-6 flex flex-col h-full border border-slate-100">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center text-2xl mr-4" aria-hidden="true">🎭</div>
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-800 leading-tight">Theater Manager Pro</h3>
+                        <p class="text-xs text-indigo-600 font-semibold uppercase tracking-wide">Punto de Venta &amp; Reservas</p>
+                    </div>
+                </div>
+                <p class="text-slate-600 text-sm mb-6 flex-grow leading-relaxed">
+                    Aplicación para digitalizar la dulcería y taquilla de un teatro. Reduce tiempos de fila y automatiza el control de stock.
+                </p>
+                <div class="mt-auto">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded">Python</span>
+                        <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded">Stripe API</span>
+                        <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded">React</span>
+                        <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded">UX Design</span>
+                    </div>
+                    <button type="button" data-dialog="dialogo-theater" class="w-full py-2 border border-slate-200 rounded text-slate-600 text-sm hover:border-indigo-500 hover:text-indigo-600 transition-colors">
+                        Ver Detalles Técnicos
+                    </button>
+                </div>
+            </article>
         </div>
     </section>
 
     <!-- CTA / Contact -->
-    <section class="py-20 bg-indigo-900 text-white rounded-none md:rounded-3xl mx-0 md:mx-4 lg:mx-8 mb-8 overflow-hidden relative">
-        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+    <section class="py-20 bg-indigo-900 text-white rounded-none md:rounded-3xl mx-0 md:mx-4 lg:mx-8 mb-8 overflow-hidden relative cta-pattern">
         <div class="relative z-10 max-w-4xl mx-auto text-center px-4">
             <h2 class="text-3xl md:text-4xl font-bold mb-6">Listo para colaborar en nuevos desafíos</h2>
             <p class="text-indigo-200 text-lg mb-8 max-w-2xl mx-auto">
-                Estoy buscando oportunidades para aplicar mi experiencia en optimización de bases de datos y desarrollo Full Stack. 
+                Estoy buscando oportunidades para aplicar mi experiencia en optimización de bases de datos y desarrollo Full Stack.
                 Si buscas un ingeniero enfocado en la eficiencia y la calidad del código, hablemos.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
@@ -254,267 +510,166 @@
             </div>
         </div>
     </section>
+    </main>
 
-    <!-- JavaScript Logic -->
+    <!-- Project detail dialogs -->
+    <dialog id="dialogo-gestion" class="rounded-2xl p-0 max-w-lg w-[calc(100%-2rem)] shadow-2xl">
+        <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-slate-900">Sistema de Gestión Comercial</h3>
+                <button type="button" data-close aria-label="Cerrar diálogo" class="text-slate-400 hover:text-slate-700 text-xl leading-none px-2">✕</button>
+            </div>
+            <p class="text-sm text-indigo-600 font-semibold uppercase tracking-wide mb-4">E-commerce &amp; Admin Dashboard</p>
+            <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                Plataforma robusta para control de inventario y ventas. Incluye roles de usuario diferenciados (CEO, Admin, Vendedor) y métricas en tiempo real. Proyecto final de 4Geeks Academy.
+            </p>
+            <h4 class="font-bold text-slate-800 text-sm uppercase tracking-wider mb-2">Stack</h4>
+            <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">React</span>
+                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">Flask</span>
+                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">PostgreSQL</span>
+                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">Docker</span>
+            </div>
+            <h4 class="font-bold text-slate-800 text-sm uppercase tracking-wider mb-2">Detalles</h4>
+            <ul class="text-slate-600 text-sm leading-relaxed list-disc pl-5 space-y-1">
+                <li>Autenticación JWT y control de acceso basado en roles (RBAC).</li>
+                <li>Integración con la API de Open Food Facts para enriquecimiento de datos.</li>
+                <li>Principios SOLID y patrón MVC.</li>
+            </ul>
+        </div>
+    </dialog>
+
+    <dialog id="dialogo-theater" class="rounded-2xl p-0 max-w-lg w-[calc(100%-2rem)] shadow-2xl">
+        <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-slate-900">Theater Manager Pro</h3>
+                <button type="button" data-close aria-label="Cerrar diálogo" class="text-slate-400 hover:text-slate-700 text-xl leading-none px-2">✕</button>
+            </div>
+            <p class="text-sm text-indigo-600 font-semibold uppercase tracking-wide mb-4">Punto de Venta &amp; Reservas</p>
+            <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                Aplicación para digitalizar la dulcería y taquilla de un teatro. Reduce tiempos de fila y automatiza el control de stock. Solución end-to-end para un cliente real.
+            </p>
+            <h4 class="font-bold text-slate-800 text-sm uppercase tracking-wider mb-2">Stack</h4>
+            <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">Python</span>
+                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">Stripe</span>
+                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">React</span>
+                <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">Hostinger</span>
+            </div>
+            <h4 class="font-bold text-slate-800 text-sm uppercase tracking-wider mb-2">Detalles</h4>
+            <ul class="text-slate-600 text-sm leading-relaxed list-disc pl-5 space-y-1">
+                <li>Frontend responsivo para selección de productos y pagos con tarjeta.</li>
+                <li>Backend seguro en Python para manejo de inventario y reservas.</li>
+                <li>Pasarela de pago Stripe y panel de administración personalizado.</li>
+                <li>Despliegue en Hostinger.</li>
+            </ul>
+        </div>
+    </dialog>
+
+    <!-- JavaScript: solo interacción (el contenido ya está en el HTML) -->
     <script>
-        // --- Data Source ---
-        const profileData = {
-            experience: [
-                {
-                    id: 'current',
-                    role: 'Full Stack Developer',
-                    company: '4Geeks Academy (Proyecto Final)',
-                    period: '02/2025 - Presente',
-                    type: 'Remoto',
-                    description: 'Lideré el diseño y desarrollo de una aplicación integral de gestión comercial. Me enfoqué en la arquitectura limpia y la seguridad.',
-                    achievements: [
-                        'Desarrollo de App de gestión de inventario y ventas con React.js y Flask.',
-                        'Implementación de autenticación JWT y control de acceso basado en roles (RBAC).',
-                        'Integración con APIs externas (Open Food Facts) para enriquecimiento de datos.',
-                        'Aplicación de principios SOLID y patrón MVC.'
-                    ],
-                    tech: ['React', 'Flask', 'PostgreSQL', 'Docker']
-                },
-                {
-                    id: 'theater',
-                    role: 'Líder de Proyecto Web',
-                    company: 'App Administrativa Teatro (Freelance)',
-                    period: '01/2025 - Presente',
-                    type: 'Remoto',
-                    description: 'Solución end-to-end para un cliente real, optimizando la venta de dulcería y boletos. Enfoque en UX y procesamiento de pagos.',
-                    achievements: [
-                        'Frontend responsivo para selección de productos y pagos con tarjeta.',
-                        'Backend seguro en Python para manejo de inventario y reservas.',
-                        'Integración de pasarela de pago (Stripe).',
-                        'Panel de administración personalizado y despliegue en Hostinger.'
-                    ],
-                    tech: ['Python', 'Stripe', 'React', 'Hostinger']
-                },
-                {
-                    id: 'pepsico',
-                    role: 'Analista de Bases de Datos',
-                    company: 'PepsiCo',
-                    period: '08/2022 - 09/2023',
-                    type: 'CDMX',
-                    description: 'Gestión crítica de datos financieros. Mi rol fue clave para asegurar la integridad de la información y acelerar los cierres contables.',
-                    achievements: [
-                        'Gestión y optimización de bases de datos SQL y NoSQL.',
-                        'Desarrollo de macros en Excel que redujeron el tiempo de análisis en un 30%.',
-                        'Monitoreo y conciliación de saldos de proveedores con alta atención al detalle.'
-                    ],
-                    tech: ['SQL', 'NoSQL', 'Excel Macros', 'Data Analysis']
-                },
-                {
-                    id: 'hsbc',
-                    role: 'Developer Jr.',
-                    company: 'HSBC',
-                    period: '03/2020 - 05/2022',
-                    type: 'CDMX',
-                    description: 'Mantenimiento y mejora de sistemas bancarios legacy. Aprendizaje intensivo de estándares corporativos de seguridad y calidad.',
-                    achievements: [
-                        'Mantenimiento de aplicaciones web Java Spring Boot.',
-                        'Depuración y resolución de problemas del lado del servidor (Debugging).',
-                        'Refactorización de código legado para mejorar mantenibilidad.',
-                        'Optimización de consultas MySQL para acelerar recuperación de datos.'
-                    ],
-                    tech: ['Java', 'Spring Boot', 'MySQL', 'Security']
-                }
-            ],
-            projects: [
-                {
-                    title: 'Sistema de Gestión Comercial',
-                    subtitle: 'E-commerce & Admin Dashboard',
-                    desc: 'Plataforma robusta para control de inventario y ventas. Incluye roles de usuario diferenciados (CEO, Admin, Vendedor) y métricas en tiempo real.',
-                    tags: ['React', 'Flask', 'JWT', 'PostgreSQL'],
-                    icon: '🛒'
-                },
-                {
-                    title: 'Theater Manager Pro',
-                    subtitle: 'Punto de Venta & Reservas',
-                    desc: 'Aplicación para digitalizar la dulcería y taquilla de un teatro. Reduce tiempos de fila y automatiza el control de stock.',
-                    tags: ['Python', 'Stripe API', 'React', 'UX Design'],
-                    icon: '🎭'
-                }
-            ]
-        };
-
-        // --- Render Functions ---
-
-        // 1. Radar Chart Initialization
-        function initRadarChart() {
-            const ctx = document.getElementById('skillsChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: ['Frontend (React)', 'Backend (Java/Python)', 'Base de Datos (SQL)', 'DevOps/Tools', 'Análisis de Datos', 'Seguridad'],
-                    datasets: [{
-                        label: 'Nivel de Competencia',
-                        data: [85, 90, 88, 75, 80, 70],
-                        fill: true,
-                        backgroundColor: 'rgba(79, 70, 229, 0.2)', // Indigo con transparencia
-                        borderColor: 'rgb(79, 70, 229)',
-                        pointBackgroundColor: 'rgb(79, 70, 229)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgb(79, 70, 229)'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    elements: {
-                        line: { borderWidth: 3 }
-                    },
-                    scales: {
-                        r: {
-                            angleLines: { color: 'rgba(0,0,0,0.1)' },
-                            grid: { color: 'rgba(0,0,0,0.05)' },
-                            pointLabels: {
-                                font: { size: 12, family: 'Inter', weight: '600' },
-                                color: '#475569'
-                            },
-                            suggestedMin: 0,
-                            suggestedMax: 100,
-                            ticks: { display: false } // Hide numbers for cleaner look
-                        }
-                    },
-                    plugins: {
-                        legend: { display: false }
-                    }
-                }
+        // 1. Timeline: cambia el panel visible al hacer clic en un nodo
+        document.querySelectorAll('.timeline-node').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var index = btn.getAttribute('data-job');
+                document.querySelectorAll('.timeline-node').forEach(function (n) {
+                    n.classList.remove('active');
+                    n.removeAttribute('aria-current');
+                    var dot = n.querySelector('.node-dot');
+                    if (dot) { dot.classList.remove('bg-white'); dot.classList.add('bg-slate-300'); }
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-current', 'true');
+                var activeDot = btn.querySelector('.node-dot');
+                if (activeDot) { activeDot.classList.remove('bg-slate-300'); activeDot.classList.add('bg-white'); }
+                document.querySelectorAll('.experience-panel').forEach(function (panel, i) {
+                    panel.classList.toggle('hidden', String(i) !== index);
+                });
             });
-        }
-
-        // 2. Timeline Interaction
-        function renderTimeline() {
-            const container = document.getElementById('timeline-container');
-            const display = document.getElementById('experience-display');
-
-            // Crear botones de la línea de tiempo
-            profileData.experience.forEach((job, index) => {
-                const btn = document.createElement('div');
-                btn.className = `timeline-node flex items-center p-4 mb-3 rounded-lg border border-transparent hover:bg-slate-50 cursor-pointer ${index === 0 ? 'active' : ''}`;
-                btn.onclick = () => selectExperience(index, btn);
-                btn.innerHTML = `
-                    <div class="w-3 h-3 rounded-full bg-slate-300 mr-4 ${index === 0 ? 'bg-white' : ''} node-dot"></div>
-                    <div>
-                        <p class="font-bold text-sm md:text-base">${job.company}</p>
-                        <p class="text-xs md:text-sm opacity-80">${job.period}</p>
-                    </div>
-                `;
-                container.appendChild(btn);
-            });
-
-            // Mostrar el primero por defecto
-            updateDisplay(profileData.experience[0]);
-        }
-
-        function selectExperience(index, clickedBtn) {
-            // Actualizar estilos de nodos
-            document.querySelectorAll('.timeline-node').forEach(n => {
-                n.classList.remove('active');
-                n.querySelector('.node-dot').classList.remove('bg-white');
-                n.querySelector('.node-dot').classList.add('bg-slate-300');
-            });
-            clickedBtn.classList.add('active');
-            clickedBtn.querySelector('.node-dot').classList.remove('bg-slate-300');
-            clickedBtn.querySelector('.node-dot').classList.add('bg-white'); // Dot blanco cuando está activo (fondo indigo)
-
-            // Animación de salida
-            const display = document.getElementById('experience-display');
-            display.style.opacity = '0';
-            
-            setTimeout(() => {
-                updateDisplay(profileData.experience[index]);
-                display.style.opacity = '1';
-            }, 300);
-        }
-
-        function updateDisplay(job) {
-            const display = document.getElementById('experience-display');
-            
-            // Generar HTML de logros
-            const achievementsHtml = job.achievements.map(a => 
-                `<li class="flex items-start mb-2">
-                    <span class="text-indigo-500 mr-2 mt-1">▹</span>
-                    <span class="text-slate-700 text-sm leading-relaxed">${a}</span>
-                </li>`
-            ).join('');
-
-            // Generar etiquetas de tecnología
-            const techHtml = job.tech.map(t => 
-                `<span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded border border-indigo-100">${t}</span>`
-            ).join('');
-
-            display.innerHTML = `
-                <div class="flex justify-between items-start mb-4">
-                    <div>
-                        <h3 class="text-2xl font-bold text-indigo-700">${job.role}</h3>
-                        <p class="text-slate-500 font-medium">${job.company} | ${job.type}</p>
-                    </div>
-                    <span class="text-sm text-slate-400 bg-slate-100 px-3 py-1 rounded-full">${job.period}</span>
-                </div>
-                <p class="text-slate-600 mb-6 italic border-l-4 border-indigo-200 pl-4">
-                    "${job.description}"
-                </p>
-                <div class="mb-6">
-                    <h4 class="font-bold text-slate-800 mb-3 uppercase text-xs tracking-wider">Impacto Clave & Logros</h4>
-                    <ul class="list-none">
-                        ${achievementsHtml}
-                    </ul>
-                </div>
-                <div class="pt-4 border-t border-slate-200">
-                    <div class="flex flex-wrap gap-2">
-                        ${techHtml}
-                    </div>
-                </div>
-            `;
-        }
-
-        // 3. Render Projects
-        function renderProjects() {
-            const grid = document.getElementById('projects-grid');
-            profileData.projects.forEach(proj => {
-                const card = document.createElement('div');
-                card.className = 'card p-6 flex flex-col h-full border border-slate-100';
-                
-                const tagsHtml = proj.tags.map(tag => 
-                    `<span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded">${tag}</span>`
-                ).join('');
-
-                card.innerHTML = `
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center text-2xl mr-4">
-                            ${proj.icon}
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-lg text-slate-800 leading-tight">${proj.title}</h3>
-                            <p class="text-xs text-indigo-600 font-semibold uppercase tracking-wide">${proj.subtitle}</p>
-                        </div>
-                    </div>
-                    <p class="text-slate-600 text-sm mb-6 flex-grow leading-relaxed">
-                        ${proj.desc}
-                    </p>
-                    <div class="mt-auto">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            ${tagsHtml}
-                        </div>
-                        <button class="w-full py-2 border border-slate-200 rounded text-slate-600 text-sm hover:border-indigo-500 hover:text-indigo-600 transition-colors">
-                            Ver Detalles Técnicos
-                        </button>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        // --- Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            initRadarChart();
-            renderTimeline();
-            renderProjects();
         });
 
+        // 2. Diálogos de proyectos: abrir, cerrar con botón o clic en el fondo (Esc es nativo)
+        document.querySelectorAll('[data-dialog]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var dlg = document.getElementById(btn.getAttribute('data-dialog'));
+                if (dlg && typeof dlg.showModal === 'function') dlg.showModal();
+            });
+        });
+        document.querySelectorAll('dialog [data-close]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var dlg = btn.closest('dialog');
+                if (dlg) dlg.close();
+            });
+        });
+        document.querySelectorAll('dialog').forEach(function (dlg) {
+            dlg.addEventListener('click', function (e) {
+                if (e.target === dlg) dlg.close();
+            });
+        });
+
+        // 3. Chart.js: se carga solo cuando #habilidades entra al viewport
+        (function () {
+            var loaded = false;
+            function initRadarChart() {
+                if (typeof Chart === 'undefined') return;
+                var canvas = document.getElementById('skillsChart');
+                if (!canvas) return;
+                new Chart(canvas.getContext('2d'), {
+                    type: 'radar',
+                    data: {
+                        labels: ['Frontend (React)', 'Backend (Java/Python)', 'Base de Datos (SQL)', 'DevOps/Tools', 'Análisis de Datos', 'Seguridad'],
+                        datasets: [{
+                            label: 'Nivel de Competencia',
+                            data: [85, 90, 88, 75, 80, 70],
+                            fill: true,
+                            backgroundColor: 'rgba(79, 70, 229, 0.2)',
+                            borderColor: 'rgb(79, 70, 229)',
+                            pointBackgroundColor: 'rgb(79, 70, 229)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgb(79, 70, 229)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        elements: { line: { borderWidth: 3 } },
+                        scales: {
+                            r: {
+                                angleLines: { color: 'rgba(0,0,0,0.1)' },
+                                grid: { color: 'rgba(0,0,0,0.05)' },
+                                pointLabels: {
+                                    font: { size: 12, family: 'Inter', weight: '600' },
+                                    color: '#475569'
+                                },
+                                suggestedMin: 0,
+                                suggestedMax: 100,
+                                ticks: { display: false }
+                            }
+                        },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+            function loadChart() {
+                if (loaded) return;
+                loaded = true;
+                var s = document.createElement('script');
+                s.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+                s.onload = initRadarChart;
+                document.head.appendChild(s);
+            }
+            var target = document.getElementById('habilidades');
+            if (!target) return;
+            if ('IntersectionObserver' in window) {
+                var obs = new IntersectionObserver(function (entries) {
+                    if (entries[0].isIntersecting) { loadChart(); obs.disconnect(); }
+                }, { rootMargin: '200px' });
+                obs.observe(target);
+            } else {
+                loadChart();
+            }
+        })();
     </script>
 </body>
 </html>

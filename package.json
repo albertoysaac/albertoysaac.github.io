@@ -1,0 +1,12 @@
+{
+  "name": "albertoysaac.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portafolio de Alberto Isaac Espinosa. El CSS se compila con Tailwind: npm install && npm run build:css",
+  "scripts": {
+    "build:css": "tailwindcss -i input.css -o style.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}
